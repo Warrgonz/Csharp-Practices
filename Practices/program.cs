@@ -8,8 +8,8 @@ public class program
     {
         // Es decir, veamolo como un contrato donde cada vez que alguien cree una cuenta bancaria, ya tiene values que tiene que pasarle.
     
-        // Ejemplo practico:
-        BankAccount micuenta_11892315 = new BankAccount(1, "Warren", "Gonzalez", 5000);
+        // Inicializo el objeto
+        BankAccount micuenta_11892315 = new BankAccount();
 
         Console.WriteLine("Enter first number:");
         int firstNumber = int.Parse(Console.ReadLine());
@@ -18,6 +18,13 @@ public class program
         Calc calcularImpar = new Calc(firstNumber, secondNumber);
         
         Console.WriteLine(calcularImpar.CalculateOdd());
+        
+        Console.WriteLine("Enter amount to deposit:");
+
+        double amount = double.Parse(Console.ReadLine());
+        
+        micuenta_11892315.Deposit(amount);
+        micuenta_11892315.Withdraw(amount);
         
         // Short cw = Console.WriteLine()
     }

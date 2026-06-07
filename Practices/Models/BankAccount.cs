@@ -2,28 +2,53 @@ namespace Practices.Models;
 
 public class BankAccount
 {
-    private int id;
-    private string name;
-    private string lastName;
-    private int balance;
-    private char area = 'a';
-    private const double percentVat = 15;
-    
-    // Utilidad del constructor: inicializar un objeto ya creado.
-    public BankAccount(int id, string name, string lastName, int balance)
+    public double Balance { get; private set; }
+
+    private List<Transaction> transactions = new List<Transaction>();
+
+    public BankAccount()
     {
-        this.id = id;
-        this.name = name;
-        this.lastName = lastName;
-        this.balance = balance;
+        // Set the account initial balance
+        Balance = 0;
+
+        // Save account opening movement
+        transactions.Add(new Transaction("Account Created", 0, Balance));
     }
 
-    public double CalculateVat()
+    public void Deposit(double amount)
     {
-        return balance * percentVat;
+        // Validate amount before depositing
+        if (amount <= 0)
+        {
+            Console.WriteLine("Invalid deposit amount");
+            return;
+        }
+
+        Balance += amount;
+
+        // Save deposit movement
+        transactions.Add(new Transaction("Deposit", amount, Balance));
     }
-    
 
+    public void Withdraw(double amount)
+    {
+        // Validate amount before withdrawing
+        if (amount <= 0)
+        {
+            Console.WriteLine("Invalid withdrawal amount");
+            return;
+        }
 
+        // Validate available balance
+        if (amount > Balance)
+        {
+            Console.WriteLine("Insufficient balance");
+            return;
+        }
 
+        Balance -= amount;
+
+        // Save withdrawal movement
+        transactions.Add(new Transaction("Withdrawal", amount, Balance));
+    }
 }
