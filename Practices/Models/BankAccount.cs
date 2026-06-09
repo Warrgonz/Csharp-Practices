@@ -4,14 +4,21 @@ public class BankAccount
 {
     public double Balance { get; private set; }
 
+    // Esa lista solo puede guardar objetos de tipo Transaction.
+    // Transaction se refiere a la clase Transaction
+    
     private List<Transaction> transactions = new List<Transaction>();
+
+    // Refierase a Transaction como el constructor que construye el objeto con los parametros.
 
     public BankAccount()
     {
         // Set the account initial balance
         Balance = 0;
-
+ 
         // Save account opening movement
+        
+        //  Cree un objeto nuevo de tipo Transaction usando su constructor.
         transactions.Add(new Transaction("Account Created", 0, Balance));
     }
 
